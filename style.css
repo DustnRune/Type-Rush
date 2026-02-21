@@ -1,0 +1,262 @@
+:root {
+    --neon-blue: #00f3ff;
+    --neon-pink: #ff00ea;
+    --neon-green: #00ff66;
+    --neon-red: #ff003c;
+    --bg-color: #050505;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #fff;
+    font-family: 'Ubuntu Mono', monospace;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+#game-container {
+    position: relative;
+    width: 600px;
+    height: 800px;
+    max-width: 100vw;
+    max-height: 100vh;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    border: 2px solid #222;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: rgba(5, 5, 5, 0.9);
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1.neon-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon-blue),
+        0 0 40px var(--neon-blue),
+        0 0 80px var(--neon-blue);
+    margin-bottom: 0.5rem;
+}
+
+h2.neon-title.red {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--neon-red),
+        0 0 40px var(--neon-red);
+    margin-bottom: 1.5rem;
+}
+
+.screen p {
+    font-size: 1.2rem;
+    color: #aaa;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.neon-button {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    color: var(--neon-blue);
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px var(--neon-blue) inset, 0 0 10px var(--neon-blue);
+}
+
+.neon-button:hover {
+    background: var(--neon-blue);
+    color: #000;
+    box-shadow: 0 0 20px var(--neon-blue) inset, 0 0 20px var(--neon-blue);
+}
+
+#hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    z-index: 50;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+.hud-item {
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.combo-container {
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+    transition: transform 0.1s ease;
+}
+
+.combo-pop {
+    transform: scale(1.3);
+}
+
+.hp-container {
+    color: var(--neon-green);
+    text-shadow: 0 0 10px var(--neon-green);
+}
+
+#game-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.falling-word {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+    transition: color 0.1s, text-shadow 0.1s;
+    white-space: nowrap;
+    text-transform: lowercase;
+}
+
+.falling-word .typed {
+    color: var(--neon-pink);
+    text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+}
+
+.falling-word.active {
+    color: var(--neon-green);
+    text-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green);
+}
+
+.falling-word.destroy {
+    animation: explode 0.3s ease-out forwards;
+}
+
+.falling-word.error {
+    animation: shake 0.3s ease-in-out;
+    color: var(--neon-red) !important;
+    text-shadow: 0 0 10px var(--neon-red) !important;
+}
+
+#typing-area {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    z-index: 50;
+    border-top: 1px solid rgba(0, 243, 255, 0.2);
+}
+
+#active-input {
+    font-size: 2rem;
+    height: 2.5rem;
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px var(--neon-pink);
+    letter-spacing: 2px;
+}
+
+#active-input.error {
+    color: var(--neon-red);
+    text-shadow: 0 0 10px var(--neon-red);
+    animation: shake 0.3s ease-in-out;
+}
+
+.stats {
+    text-align: left;
+    margin-bottom: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border: 1px solid var(--neon-red);
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.2);
+    min-width: 300px;
+}
+
+.stats p {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.stats span {
+    color: var(--neon-blue);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; filter: blur(0); }
+    50% { transform: scale(1.5); opacity: 0.8; filter: blur(2px); }
+    100% { transform: scale(2); opacity: 0; filter: blur(5px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+/* Flash effect when taking damage */
+.damage-flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 0, 60, 0.3);
+    z-index: 90;
+    pointer-events: none;
+    animation: flashInfo 0.2s ease-out forwards;
+}
+
+@keyframes flashInfo {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeRush</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Main Menu -->
+        <div id="start-screen" class="screen">
+            <h1 class="neon-title">TypeRush</h1>
+            <p>Survival Typing</p>
+            <button id="start-btn" class="neon-button">START GAME</button>
+        </div>
+
+        <!-- Game HUD -->
+        <div id="hud" class="hidden">
+            <div class="hud-item">Score: <span id="score-val">0</span></div>
+            <div class="hud-item combo-container">Combo: <span id="combo-val">x1</span></div>
+            <div class="hud-item hp-container">HP: <span id="hp-val">3</span></div>
+        </div>
+
+        <!-- Game Area (falling words) -->
+        <div id="game-area" class="hidden"></div>
+        
+        <!-- Typing display -->
+        <div id="typing-area" class="hidden">
+            <div id="active-input">_</div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen hidden">
+            <h2 class="neon-title red">GAME OVER</h2>
+            <div class="stats">
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>Highest Combo: <span id="final-combo">x1</span></p>
+                <p>Words Typed: <span id="final-words">0</span></p>
+                <p>Time Survived: <span id="final-time">0s</span></p>
+            </div>
+            <button id="restart-btn" class="neon-button">PLAY AGAIN</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
