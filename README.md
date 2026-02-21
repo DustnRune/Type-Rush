@@ -20,10 +20,3 @@ TypeRush is a fast-paced survival typing game set in a dark neon universe. Words
 - **CSS3**: Leveraging CSS variables, flexbox, and CSS animations for the neon visuals.
 - **Vanilla JavaScript (ES6)**: Game loop handled via `requestAnimationFrame` for buttery smooth 60fps performance and pure DOM manipulation for interactive elements.
 
-## Deployment to GitHub Pages
-This project is fully ready to deploy using GitHub Pages:
-1. Ensure `index.html`, `style.css`, and `script.js` are in the root directory.
-2. Push your code to a GitHub repository.
-3. Go to the repository's **Settings** -> **Pages**.
-4. Set the source to **Deploy from a branch** and choose `main` (or `master`).
-5. Save, wait a minute, and test your live demo link!
